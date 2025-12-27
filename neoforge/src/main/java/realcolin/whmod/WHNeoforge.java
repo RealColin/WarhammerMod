@@ -8,6 +8,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import realcolin.whmod.worldgen.biome.WHBiomeSource;
+import realcolin.whmod.worldgen.map.Terrain;
 import realcolin.whmod.worldgen.map.WorldMap;
 
 @Mod(Constants.MOD_ID)
@@ -27,5 +28,6 @@ public class WHNeoforge {
 
     public static void registerData(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(WHRegistries.MAP, WorldMap.DIRECT_CODEC);
+        event.dataPackRegistry(WHRegistries.TERRAIN, Terrain.DIRECT_CODEC);
     }
 }

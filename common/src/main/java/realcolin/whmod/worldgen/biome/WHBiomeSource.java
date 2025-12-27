@@ -9,7 +9,6 @@ import net.minecraft.world.level.biome.Climate;
 import org.jetbrains.annotations.NotNull;
 import realcolin.whmod.worldgen.map.WorldMap;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 public class WHBiomeSource extends BiomeSource {
@@ -31,12 +30,12 @@ public class WHBiomeSource extends BiomeSource {
     }
 
     @Override
-    protected Stream<Holder<Biome>> collectPossibleBiomes() {
-        return Stream.of(map.value().getDefaultBiome());
+    protected @NotNull Stream<Holder<Biome>> collectPossibleBiomes() {
+        return map.value().getAllBiomes().stream();
     }
 
     @Override
-    public Holder<Biome> getNoiseBiome(int i, int i1, int i2, Climate.Sampler sampler) {
+    public @NotNull Holder<Biome> getNoiseBiome(int i, int i1, int i2, Climate.@NotNull Sampler sampler) {
         return map.value().getDefaultBiome();
     }
 }

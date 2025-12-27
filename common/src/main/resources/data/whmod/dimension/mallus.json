@@ -3,8 +3,8 @@
   "generator": {
     "type": "minecraft:noise",
     "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "whmod:drakwald"
+      "type": "whmod:map_biome_source",
+      "map": "whmod:mallus"
     },
     "settings": "minecraft:overworld"
   }

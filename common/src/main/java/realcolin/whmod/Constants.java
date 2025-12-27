@@ -7,4 +7,6 @@ public class Constants {
 	public static final String MOD_ID = "whmod";
 	public static final String MOD_NAME = "WarhammerMod";
 	public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+
+    public static final String MAP_BIOME_SOURCE_ID = "map_biome_source";
 }

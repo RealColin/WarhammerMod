@@ -3,11 +3,13 @@ package realcolin.whmod;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.levelgen.DensityFunction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import realcolin.whmod.worldgen.biome.WHBiomeSource;
+import realcolin.whmod.worldgen.densityfunction.MapSampler;
 import realcolin.whmod.worldgen.map.Terrain;
 import realcolin.whmod.worldgen.map.WorldMap;
 
@@ -15,6 +17,7 @@ import realcolin.whmod.worldgen.map.WorldMap;
 public class WHNeoforge {
 
     private static final DeferredRegister<MapCodec<? extends BiomeSource>> BIOME_SOURCES = DeferredRegister.create(BuiltInRegistries.BIOME_SOURCE, Constants.MOD_ID);
+    private static final DeferredRegister<MapCodec<? extends DensityFunction>> DENSITY_FUNCTIONS = DeferredRegister.create(BuiltInRegistries.DENSITY_FUNCTION_TYPE, Constants.MOD_ID);
 
     public WHNeoforge(IEventBus eventBus) {
         Constants.LOG.info("Warhammer NeoForge loaded");
@@ -23,11 +26,14 @@ public class WHNeoforge {
         BIOME_SOURCES.register(Constants.MAP_BIOME_SOURCE_ID, () -> WHBiomeSource.CODEC);
         BIOME_SOURCES.register(eventBus);
 
+        DENSITY_FUNCTIONS.register("map_sampler", () -> MapSampler.CODEC);
+        DENSITY_FUNCTIONS.register(eventBus);
+
         eventBus.addListener(WHNeoforge::registerData);
     }
 
     public static void registerData(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(WHRegistries.MAP, WorldMap.DIRECT_CODEC);
         event.dataPackRegistry(WHRegistries.TERRAIN, Terrain.DIRECT_CODEC);
+        event.dataPackRegistry(WHRegistries.MAP, WorldMap.DIRECT_CODEC);
     }
 }

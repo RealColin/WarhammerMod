@@ -36,6 +36,6 @@ public class WHBiomeSource extends BiomeSource {
 
     @Override
     public @NotNull Holder<Biome> getNoiseBiome(int i, int i1, int i2, Climate.@NotNull Sampler sampler) {
-        return map.value().getDefaultBiome();
+        return map.value().getBiome(i * 4, i2 * 4);
     }
 }

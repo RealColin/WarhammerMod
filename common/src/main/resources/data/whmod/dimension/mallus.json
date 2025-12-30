@@ -6,6 +6,6 @@
       "type": "whmod:map_biome_source",
       "map": "whmod:mallus"
     },
-    "settings": "minecraft:overworld"
+    "settings": "whmod:mallus"
   }
 }

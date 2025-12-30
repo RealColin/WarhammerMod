@@ -1,14 +1,38 @@
 {
-  "image": "whmod:mallus.svg",
+  "image": "whmod:mallus2.svg",
   "resolution": 96,
-  "default_biome": "whmod:drakwald",
+  "default_biome": "whmod:the_sea",
+  "default_terrain": "whmod:ocean",
   "entries": [
     {
       "region": "reikwald",
-      "color": 1,
+      "color": 37632,
+      "terrain": "whmod:flats",
       "biomes": [
         {
           "biome": "whmod:reikwald",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "grey_mountains",
+      "color": 11842740,
+      "terrain": "whmod:mountains",
+      "biomes": [
+        {
+          "biome": "whmod:grey_mountains",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "old_world_placeholder",
+      "color": 6927429,
+      "terrain": "whmod:flats",
+      "biomes": [
+        {
+          "biome": "minecraft:plains",
           "weight": 50
         }
       ]

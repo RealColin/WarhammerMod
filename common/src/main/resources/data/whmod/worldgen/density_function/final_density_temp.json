@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "argument1": "whmod:block_height",
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": "minecraft:y",
+    "argument2": -1.0
+  }
+}

@@ -36,6 +36,72 @@
           "weight": 50
         }
       ]
+    },
+    {
+      "region": "river_reik",
+      "color": 255,
+      "terrain": "whmod:river",
+      "biomes": [
+        {
+          "biome": "whmod:river_reik",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "reikstream",
+      "color": 240,
+      "terrain": "whmod:river",
+      "biomes": [
+        {
+          "biome": "whmod:reikstream",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "river_teufel",
+      "color": 243,
+      "terrain": "whmod:river",
+      "biomes": [
+        {
+          "biome": "whmod:river_teufel",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "river_bogen",
+      "color": 246,
+      "terrain": "whmod:river",
+      "biomes": [
+        {
+          "biome": "whmod:river_bogen",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "grissenwald_stream",
+      "color": 249,
+      "terrain": "whmod:river",
+      "biomes": [
+        {
+          "biome": "whmod:grissenwald_stream",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "vorbergland",
+      "color": 7632209,
+      "terrain": "whmod:flats",
+      "biomes": [
+        {
+          "biome": "whmod:vorbergland",
+          "weight": 50
+        }
+      ]
     }
   ]
 }

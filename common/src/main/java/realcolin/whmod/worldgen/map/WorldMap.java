@@ -75,8 +75,6 @@ public class WorldMap {
 
             this.width = Math.round((svgDocument.getRootElement().getWidth().getBaseVal().getValue() / 96) * resolution);
             this.height = Math.round((svgDocument.getRootElement().getHeight().getBaseVal().getValue() / 96) * resolution);
-            System.out.println(this.width);
-            System.out.println(this.height);
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
@@ -154,7 +152,6 @@ public class WorldMap {
             this.node.paint(g2d);
 
             cache.put(cellPos, regionMap);
-            System.out.println("CACHE UPDATED");
         }
 
         return regionMap.getRGB(x % cellSize, y % cellSize);

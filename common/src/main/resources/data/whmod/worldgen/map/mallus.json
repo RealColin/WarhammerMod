@@ -102,6 +102,28 @@
           "weight": 50
         }
       ]
+    },
+    {
+      "region": "vorber_marsh",
+      "color": 5196826,
+      "terrain": "whmod:flats",
+      "biomes": [
+        {
+          "biome": "whmod:vorber_marsh",
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "region": "furdienst",
+      "color": 5527306,
+      "terrain": "whmod:flats",
+      "biomes": [
+        {
+          "biome": "whmod:furdienst",
+          "weight": 50
+        }
+      ]
     }
   ]
 }

@@ -55,11 +55,20 @@ dependencies {
     implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
     implementation "dev.kosmx.player-anim:player-animation-lib-forge:2.0.1+1.21.1"
 
-    jarJar(implementation('org.apache.xmlgraphics:batik-all:1.16'))
-    jarJar(implementation('org.apache.xmlgraphics:xmlgraphics-commons:2.7'))
-    jarJar(implementation'xml-apis:xml-apis:1.4.01')
-    jarJar(implementation('xml-apis:xml-apis-ext:1.3.04'))
+    jarJar(group: 'org.apache.xmlgraphics', name: 'batik-all', version: '[1.16,1.17)')
+    jarJar(group: 'org.apache.xmlgraphics', name: 'xmlgraphics-commons', version: '[2.7,2.8)')
+    jarJar(group: 'xml-apis', name: 'xml-apis', version: '[1.4.01,1.5)')
+    jarJar(group: 'xml-apis', name: 'xml-apis-ext', version: '[1.3.04,1.4)')
+    jarJar(group: 'net.imagej', name: 'ij', version: '[1.54f,1.55)')
+
+    implementation 'org.apache.xmlgraphics:batik-all:1.16'
+    implementation 'org.apache.xmlgraphics:xmlgraphics-commons:2.7'
+    implementation 'xml-apis:xml-apis:1.4.01'
+    implementation 'xml-apis:xml-apis-ext:1.3.04'
+    implementation 'net.imagej:ij:1.54f'
+
     additionalRuntimeClasspath 'org.apache.xmlgraphics:batik-all:1.16'
+    additionalRuntimeClasspath 'net.imagej:ij:1.54f'
 }
 
 configurations.all {

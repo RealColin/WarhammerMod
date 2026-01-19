@@ -16,6 +16,12 @@ neoForge {
     }
 }
 
+repositories {
+    maven {
+        url "https://maven.scijava.org/content/groups/public/"
+    }
+}
+
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     // fabric and neoforge both bundle mixinextras, so it is safe to use it in common
@@ -24,6 +30,7 @@ dependencies {
 
     implementation 'org.apache.xmlgraphics:batik-transcoder:1.16'
     implementation 'org.apache.xmlgraphics:batik-codec:1.16'
+    implementation 'net.imagej:ij:1.54f'
 }
 
 configurations {

@@ -52,6 +52,7 @@ public class WorldMap {
     private final GraphicsNode node;
     private final ConcurrentHashMap<Pair, BufferedImage> cache;
 
+    private final ConcurrentHashMap<Pair, Cell> cellCache;
 
     public WorldMap(ResourceLocation imageLoc, int resolution, Holder<Biome> defaultBiome, Holder<Terrain> defaultTerrain, List<MapEntry> entries) {
         this.imageLoc = imageLoc;
@@ -60,6 +61,7 @@ public class WorldMap {
         this.defaultTerrain = defaultTerrain;
         this.entries = entries;
         this.cache = new ConcurrentHashMap<>();
+        this.cellCache = new ConcurrentHashMap<>();
 
         String PATH = "assets/%s/map/%s".formatted(imageLoc.getNamespace(), imageLoc.getPath());
 
@@ -133,28 +135,45 @@ public class WorldMap {
         if (outsideRange(x, y))
             return -1;
 
-        int cellSize = 512;
-        var cellPos = new Pair(x / cellSize, y / cellSize);
-        BufferedImage regionMap;
+        var cellPos = new Pair(Math.floorDiv(x, Constants.CELL_SIZE), Math.floorDiv(y, Constants.CELL_SIZE));
+        Cell cell;
 
-        if (cache.containsKey(cellPos)) {
-            regionMap = cache.get(cellPos);
-        } else {
-            regionMap = new BufferedImage(cellSize, cellSize, BufferedImage.TYPE_INT_RGB);
-            var g2d = regionMap.createGraphics();
+        if (cellCache.containsKey(cellPos))
+            cell = cellCache.get(cellPos);
+        else {
+            var start = System.nanoTime();
+            cell = new Cell(this.node, this.resolution, cellPos);
+            var elapsed = System.nanoTime() - start;
+            System.out.println("Cell generated in " + elapsed + " nanoseconds.");
 
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
-            int svgX = cellPos.a() * cellSize;
-            int svgY = cellPos.b() * cellSize;
-            g2d.translate(-svgX, -svgY);
-            g2d.scale((double) resolution / 96.0, (double)resolution / 96.0);
-            this.node.paint(g2d);
-
-            cache.put(cellPos, regionMap);
+            cellCache.put(cellPos, cell);
         }
 
-        return regionMap.getRGB(x % cellSize, y % cellSize);
+        // uses world-coordinates for this because translation takes place within - maybe change this
+        return cell.getColorAt(x, y);
+
+//        int cellSize = 512;
+//        var cellPos = new Pair(x / cellSize, y / cellSize);
+//        BufferedImage regionMap;
+//
+//        if (cache.containsKey(cellPos)) {
+//            regionMap = cache.get(cellPos);
+//        } else {
+//            regionMap = new BufferedImage(cellSize, cellSize, BufferedImage.TYPE_INT_RGB);
+//            var g2d = regionMap.createGraphics();
+//
+//            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+//            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+//            int svgX = cellPos.a() * cellSize;
+//            int svgY = cellPos.b() * cellSize;
+//            g2d.translate(-svgX, -svgY);
+//            g2d.scale((double) resolution / 96.0, (double)resolution / 96.0);
+//            this.node.paint(g2d);
+//
+//            cache.put(cellPos, regionMap);
+//        }
+//
+//        return regionMap.getRGB(x % cellSize, y % cellSize);
     }
 
     private boolean outsideRange(int x, int y) {

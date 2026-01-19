@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import realcolin.whmod.util.Pair;
 import realcolin.whmod.worldgen.map.Terrain;
 import realcolin.whmod.worldgen.map.WorldMap;
+import realcolin.whmod.worldgen.map.MapField;
 
 import java.util.HashMap;
 
-@SuppressWarnings("ClassEscapesDefinedScope")
 public class MapSampler implements DensityFunction.SimpleFunction {
     public static final MapCodec<MapSampler> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             WorldMap.CODEC.fieldOf("map").forGetter(src -> src.map),
@@ -84,28 +84,5 @@ public class MapSampler implements DensityFunction.SimpleFunction {
     @Override
     public KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return new KeyDispatchDataCodec<>(CODEC);
-    }
-
-    enum MapField implements StringRepresentable {
-        HEIGHT("height") {
-            @Override
-            public DensityFunction read(Terrain terrain) {
-                return terrain.height();
-            }
-        };
-
-        public static final Codec<MapField> CODEC = StringRepresentable.fromEnum(MapField::values);
-        private final String name;
-
-        MapField(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return name;
-        }
-
-        abstract DensityFunction read(Terrain terrain);
     }
 }

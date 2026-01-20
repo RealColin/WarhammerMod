@@ -132,4 +132,24 @@ public class Cell {
             distanceTransforms.put(color, dists);
         }
     }
+
+    public int getClosestColorWithinBlendRange(int x, int z) {
+        int ox = Math.floorMod(x, Constants.CELL_SIZE) + (Constants.CELL_BUFFER / 2);
+        int oz = Math.floorMod(z, Constants.CELL_SIZE) + (Constants.CELL_BUFFER / 2);
+
+        var dist = Constants.BLEND_RANGE;
+        var color = bufferedRegionMap.getRGB(ox, oz);
+
+        for (var c : distanceTransforms.keySet()) {
+            var arr = distanceTransforms.get(c);
+            var val = arr[ox][oz];
+
+            if (val < dist) {
+                dist = val;
+                color = c;
+            }
+        }
+
+        return color;
+    }
 }

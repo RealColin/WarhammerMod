@@ -43,17 +43,25 @@ public class MapSamplerWithBlending implements DensityFunction.SimpleFunction {
 
     @Override
     public double minValue() {
-        return 0;
+        return -5;
     }
 
     @Override
     public double maxValue() {
-        return 0;
+        return 5;
     }
 
     @Override
-    public @NotNull DensityFunction mapAll(@NotNull Visitor visitor) {
-        return SimpleFunction.super.mapAll(visitor);
+    public @NotNull DensityFunction mapAll(@NotNull Visitor v) {
+        var terrains = map.value().getTerrains();
+        var tmpFuncs = new HashMap<Terrain, DensityFunction>();
+
+        for (var t : terrains) {
+            var fn = field.read(t).mapAll(v);
+            tmpFuncs.put(t, fn);
+        }
+
+        return v.apply(new MapSampler(map, field, tmpFuncs));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package realcolin.whmod.worldgen.map;
 
+import com.mojang.datafixers.kinds.Const;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -121,6 +122,26 @@ public class WorldMap {
         return terrains;
     }
 
+    public Cell getCellAt(int x, int z) {
+        var cellPos = new Pair(Math.floorDiv(x, Constants.CELL_SIZE), Math.floorDiv(z, Constants.CELL_SIZE));
+
+        if (cellCache.containsKey(cellPos))
+            return cellCache.get(cellPos);
+        else {
+            var cell = new Cell(this.node, this.resolution, cellPos);
+            cellCache.put(cellPos, cell);
+            return cell;
+        }
+    }
+
+    public Terrain getTerrainFromColor(int color) {
+        if (color != -1 && colorRegionMap.containsKey(color)) {
+            return colorRegionMap.get(color).terrain().value();
+        }
+
+        return defaultTerrain.value();
+    }
+
     public Terrain getTerrain(int x, int z) {
         var color = getColorAtPixel(x, z);
 
@@ -128,6 +149,19 @@ public class WorldMap {
             return colorRegionMap.get(color).terrain().value();
 
         return defaultTerrain.value();
+    }
+
+    public Terrain getClosestNeighbor(int x, int z) {
+        var color = getColorAtPixel(x, z);
+        var cellPos = new Pair(Math.floorDiv(x, Constants.CELL_SIZE), Math.floorDiv(z, Constants.CELL_SIZE));
+        var cell = cellCache.get(cellPos);
+
+        var nearest = cell.getClosestColorWithinBlendRange(x, z);
+
+        if (nearest == color)
+            return null;
+        else
+            return colorRegionMap.get(nearest).terrain().value();
     }
 
 
@@ -144,7 +178,7 @@ public class WorldMap {
             var start = System.nanoTime();
             cell = new Cell(this.node, this.resolution, cellPos);
             var elapsed = System.nanoTime() - start;
-            System.out.println("Cell generated in " + elapsed + " nanoseconds.");
+//            System.out.println("Cell generated in " + elapsed + " nanoseconds.");
 
             cellCache.put(cellPos, cell);
         }

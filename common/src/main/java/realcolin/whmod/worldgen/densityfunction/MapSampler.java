@@ -40,6 +40,7 @@ public class MapSampler implements DensityFunction.SimpleFunction {
 
     @Override
     public double compute(@NotNull FunctionContext fnc) {
+        System.out.println("ERM");
         var p = new Pair(fnc.blockX(), fnc.blockZ());
         if (cache.containsKey(p))
             return cache.get(p);

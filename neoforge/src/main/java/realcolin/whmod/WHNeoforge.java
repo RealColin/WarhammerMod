@@ -10,6 +10,7 @@ import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import realcolin.whmod.worldgen.biome.WHBiomeSource;
 import realcolin.whmod.worldgen.densityfunction.MapSampler;
+import realcolin.whmod.worldgen.densityfunction.MapSamplerWithBlending;
 import realcolin.whmod.worldgen.map.Terrain;
 import realcolin.whmod.worldgen.map.WorldMap;
 
@@ -27,6 +28,7 @@ public class WHNeoforge {
         BIOME_SOURCES.register(eventBus);
 
         DENSITY_FUNCTIONS.register("map_sampler", () -> MapSampler.CODEC);
+        DENSITY_FUNCTIONS.register("blended_map_sampler", () -> MapSamplerWithBlending.CODEC);
         DENSITY_FUNCTIONS.register(eventBus);
 
         eventBus.addListener(WHNeoforge::registerData);

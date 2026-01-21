@@ -133,6 +133,10 @@ public class Cell {
         }
     }
 
+    public HashMap<Integer, double[][]> getDistTransforms() {
+        return distanceTransforms;
+    }
+
     public int getClosestColorWithinBlendRange(int x, int z) {
         int ox = Math.floorMod(x, Constants.CELL_SIZE) + (Constants.CELL_BUFFER / 2);
         int oz = Math.floorMod(z, Constants.CELL_SIZE) + (Constants.CELL_BUFFER / 2);

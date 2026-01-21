@@ -1,6 +1,5 @@
 {
   "type": "minecraft:add",
-  "input": "minecraft:y",
   "argument1": 63,
   "argument2": {
     "type": "minecraft:mul",

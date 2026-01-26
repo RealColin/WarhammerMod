@@ -161,6 +161,10 @@ public class MapSamplerWithBlending implements DensityFunction.SimpleFunction {
                 var ter = region.terrain();
                 var func = functions.getOrDefault(ter, field.read(ter));
                 var val = func.compute(fnc);
+                if (ter.name().equals("mountains")) {
+//                    System.out.println(val);
+                }
+
                 blendedValue += val * (region.weight() / landWeight);
             }
 
@@ -182,7 +186,14 @@ public class MapSamplerWithBlending implements DensityFunction.SimpleFunction {
             }
 
             // blend height from h down to 0.0 from d=50 to d=0
+
+            if (currentTerrain.name().equals("mountains")) {
+//                System.out.println("before blending: " + blendedValue);
+            }
             blendedValue = lerp(distToWater, d, 0.0, blendedValue, 0.0);
+            if (currentTerrain.name().equals("mountains")) {
+//                System.out.println("after blending: " + blendedValue);
+            }
 
         } else {
             // do the same thing but vice versa
@@ -201,6 +212,8 @@ public class MapSamplerWithBlending implements DensityFunction.SimpleFunction {
 
             blendedValue = lerp(distToLand, Constants.BLEND_RANGE, 0.0, blendedValue, 0.0);
         }
+
+//        System.out.println("NAME: " + currentTerrain.name() + " value: " + blendedValue);
 
         cache.put(p, blendedValue);
         return blendedValue;

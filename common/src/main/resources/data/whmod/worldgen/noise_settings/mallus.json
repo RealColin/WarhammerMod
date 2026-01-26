@@ -47,7 +47,7 @@
       "xz_scale": 1,
       "y_scale": 1
     },
-    "ridges": "minecraft:overworld/ridges",
+    "ridges": "whmod:ridges",
     "temperature": {
       "type": "minecraft:shifted_noise",
       "noise": "minecraft:temperature",

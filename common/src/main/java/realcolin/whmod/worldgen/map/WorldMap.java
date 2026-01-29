@@ -46,7 +46,7 @@ public class WorldMap {
     private final Holder<Terrain> defaultTerrain;
     private final List<MapEntry> entries;
 
-    private final Set<Terrain> terrains;
+    private final Set<Holder<Terrain>> terrains;
     private final HashMap<Integer, MapEntry> colorRegionMap;
     private final int width;
     private final int height;
@@ -85,11 +85,12 @@ public class WorldMap {
         terrains = new HashSet<>();
         colorRegionMap = new HashMap<>();
         for (var e : entries) {
-            terrains.add(e.terrain().value());
+            terrains.add(e.terrain());
 
             var c = new Color(e.color());
             colorRegionMap.put(c.getRGB(), e);
         }
+        terrains.add(defaultTerrain);
 
         Constants.LOG.info("Successfully Initialized a WorldMap instance");
     }
@@ -118,7 +119,7 @@ public class WorldMap {
         return defaultBiome;
     }
 
-    public Set<Terrain> getTerrains() {
+    public Set<Holder<Terrain>> getTerrains() {
         return terrains;
     }
 

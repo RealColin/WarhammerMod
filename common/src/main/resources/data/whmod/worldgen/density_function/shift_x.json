@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:mul",
+  "argument1": 4,
+  "argument2": {
+    "type": "whmod:noise",
+    "noise": "minecraft:offset",
+    "x_scale": 0.25,
+    "y_scale": 0,
+    "z_scale": 0
+  }
+}

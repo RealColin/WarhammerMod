@@ -24,9 +24,9 @@
       "xz_scale": 1,
       "y_scale": 0.5
     },
-    "continents": "whmod:ridges",
+    "continents": "minecraft:overworld/continents",
     "depth": "minecraft:overworld/depth",
-    "erosion": "minecraft:overworld/erosion",
+    "erosion": "whmod:mountains/erosion",
     "final_density": "whmod:final_density_temp",
     "fluid_level_floodedness": {
       "type": "minecraft:noise",
@@ -47,7 +47,7 @@
       "xz_scale": 1,
       "y_scale": 1
     },
-    "ridges": "whmod:ridges",
+    "ridges": "whmod:mountains/peaks",
     "temperature": {
       "type": "minecraft:shifted_noise",
       "noise": "minecraft:temperature",

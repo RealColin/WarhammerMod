@@ -1,9 +1,9 @@
 {
   "type": "minecraft:mul",
-  "argument1": 4,
+  "argument1": 8,
   "argument2": {
     "type": "whmod:noise",
-    "noise": "minecraft:offset",
+    "noise": "whmod:mountains/offset1",
     "x_scale": 0.125,
     "y_scale": 0,
     "z_scale": 0

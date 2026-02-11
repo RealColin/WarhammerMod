@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": {
+      "type": "minecraft:clamp",
+      "input": {
+        "type": "whmod:shifted_noise",
+        "noise": "minecraft:erosion",
+        "x_scale": 0.125,
+        "y_scale": 0,
+        "z_scale": 0.25,
+        "shift_x": "whmod:shift_x",
+        "shift_y": 0,
+        "shift_z": "whmod:shift_z"
+      },
+      "min": -1.0,
+      "max": 1.0
+    },
+    "points": [
+      {
+        "location": -1,
+        "derivative": 0,
+        "value": 0
+      },
+      {
+        "location": -0.3,
+        "derivative": 0,
+        "value": -0.05
+      },
+      {
+        "location": 0,
+        "derivative": 0,
+        "value": -0.3
+      },
+      {
+        "location": 0.3,
+        "derivative": 0,
+        "value": -0.05
+      },
+      {
+        "location": 1,
+        "derivative": 0,
+        "value": 0
+      }
+    ]
+  }
+}

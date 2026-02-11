@@ -1,0 +1,77 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": {
+      "type": "minecraft:clamp",
+      "input": {
+        "type": "whmod:shifted_noise",
+        "noise": "minecraft:ridge",
+        "x_scale": 0.25,
+        "y_scale": 0,
+        "z_scale": 0.0625,
+        "shift_x": "whmod:mountains/a_shift_x",
+        "shift_y": 0,
+        "shift_z": "whmod:mountains/a_shift_z"
+      },
+      "min": -1,
+      "max": 1
+    },
+    "points": [
+      {
+        "location": -1,
+        "derivative": 0,
+        "value": 0
+      },
+      {
+        "location": -0.8,
+        "derivative": 0,
+        "value": 0.04
+      },
+      {
+        "location": -0.6,
+        "derivative": 0,
+        "value": 0.08
+      },
+      {
+        "location": -0.4,
+        "derivative": 0,
+        "value": 0.16
+      },
+      {
+        "location": -0.2,
+        "derivative": 0,
+        "value": 0.32
+      },
+      {
+        "location": 0,
+        "derivative": 0,
+        "value": 0.64
+      },
+      {
+        "location": 0.2,
+        "derivative": 0,
+        "value": 0.32
+      },
+      {
+        "location": 0.4,
+        "derivative": 0,
+        "value": 0.16
+      },
+      {
+        "location": 0.6,
+        "derivative": 0,
+        "value": 0.08
+      },
+      {
+        "location": 0.8,
+        "derivative": 0,
+        "value": 0.04
+      },
+      {
+        "location": 1,
+        "derivative": 0,
+        "value": 0
+      }
+    ]
+  }
+}
